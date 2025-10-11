@@ -4,8 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build'), // ✅ changed from 'dist' to 'build'
         filename: 'bundle.js',
+        clean: true, // ✅ optional: cleans old files before each build
     },
     module: {
         rules: [
@@ -21,13 +22,15 @@ module.exports = {
 
     plugins: [
         new HtmlWebpackPlugin({
-            template: './public/index.html', // 👈 This is where your HTML template is defined
+            template: './public/index.html', // your HTML template
         }),
     ],
+
     devServer: {
-        static: path.resolve(__dirname, 'dist'),
-        port: 3000, // Change to a free port like 3000 or 5173
+        static: path.resolve(__dirname, 'build'), // ✅ serve from 'build'
+        port: 3000,
         open: true,
+        historyApiFallback: true, // ✅ support React Router SPA routing
     },
 
     resolve: {
