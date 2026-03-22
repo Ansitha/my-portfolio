@@ -2,9 +2,14 @@ import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 import { ArrowForward } from '@mui/icons-material';
-import { useNavigate } from 'react-router-dom'; // <-- import useNavigate
+import { useNavigate } from 'react-router-dom';
 
-// 3D Book Opening Animation
+// *** NEW REFINED FONTS & COLORS FOR SENIOR AESTHETIC ***
+const primaryFont = "'Inter', sans-serif"; // Recommended: load this font via link in index.html
+const primaryTeal = '#00CEC9'; // Vibrant teal for highlights and CTAs
+const darkBackground = '#121212'; // Modern, deep grey background
+
+// 3D Book Opening Animation (Retained your excellent animation logic)
 const bookOpen = {
   hidden: { rotateY: 90, scale: 0.8, opacity: 0 },
   visible: {
@@ -25,59 +30,33 @@ const fadeInUp = {
 };
 
 const Home = () => {
-  const navigate = useNavigate(); // <-- initialize navigate
+  const navigate = useNavigate();
 
   return (
     <Box
       sx={{
         minHeight: '100vh',
-        background: 'linear-gradient(135deg, #fce4ec 0%, #e3f2fd 100%)',
+        // *** 1. MINIMAL DARK BACKGROUND ***
+        background: darkBackground,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         position: 'relative',
         overflow: 'hidden',
         perspective: 1500,
+        pt: 10, // Top padding for space
       }}
     >
-      {/* Floating sparkles */}
+      {/* Sparkles retained (optional) */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0.3, 1, 0.3] }}
-        transition={{
-          duration: 5,
-          repeat: Infinity,
-          repeatType: 'mirror',
-        }}
-        style={{
-          position: 'absolute',
-          top: '30%',
-          left: '20%',
-          width: '6px',
-          height: '6px',
-          background: 'white',
-          borderRadius: '50%',
-          filter: 'blur(2px)',
-        }}
+        initial={{ opacity: 0 }} animate={{ opacity: [0.3, 1, 0.3] }}
+        transition={{ duration: 5, repeat: Infinity, repeatType: 'mirror' }}
+        style={{ position: 'absolute', top: '30%', left: '20%', width: '6px', height: '6px', background: 'white', borderRadius: '50%', filter: 'blur(2px)' }}
       />
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0.4, 1, 0.4] }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          repeatType: 'mirror',
-        }}
-        style={{
-          position: 'absolute',
-          bottom: '25%',
-          right: '30%',
-          width: '8px',
-          height: '8px',
-          background: 'white',
-          borderRadius: '50%',
-          filter: 'blur(3px)',
-        }}
+        initial={{ opacity: 0 }} animate={{ opacity: [0.4, 1, 0.4] }}
+        transition={{ duration: 6, repeat: Infinity, repeatType: 'mirror' }}
+        style={{ position: 'absolute', bottom: '25%', right: '30%', width: '8px', height: '8px', background: 'white', borderRadius: '50%', filter: 'blur(3px)' }}
       />
 
       {/* Book Opening Animation Container */}
@@ -87,58 +66,66 @@ const Home = () => {
         animate="visible"
         style={{
           transformStyle: 'preserve-3d',
-          background: 'rgba(255, 255, 255, 0.9)',
-          borderRadius: '20px',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
-          padding: '60px 40px',
-          maxWidth: '700px',
-          textAlign: 'center',
+          // *** 2. REFINED CONTAINER STYLE (Dark Surface) ***
+          background: 'rgba(30, 30, 30, 0.95)', // Slightly lighter grey surface
+          borderRadius: '24px', // Modern corner radius
+          boxShadow: '0 25px 50px rgba(0,0,0,0.3)',
+          padding: '80px 60px', // More breathing room
+          maxWidth: '850px', 
+          textAlign: 'left', // *** 3. ALIGN TEXT LEFT for pro feel ***
+          border: `1px solid rgba(255, 255, 255, 0.05)`, // Subtle border highlight
         }}
       >
         {/* Animated Content */}
         <motion.div variants={fadeInUp} initial="hidden" animate="visible" custom={0}>
           <Typography
-            variant="h3"
+            variant="h2" // Larger, bold title
             sx={{
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: 'bold',
-              color: '#37474f',
-              mb: 2,
+              // *** 4. REFINED FONT ***
+              fontFamily: primaryFont,
+              fontWeight: 800, // Very bold
+              // *** 5. CLEAN TEXT COLOR ***
+              color: 'white',
+              mb: 1.5,
+              textTransform: 'uppercase', // Assertive styling
+              letterSpacing: '2px', // Modern kerning
             }}
           >
-            Hi, I'm <span style={{ color: '#1976d2' }}>Ansithamol</span>
+            I'M <span style={{ color: primaryTeal }}>ANSITHAMOL</span>
           </Typography>
         </motion.div>
 
         <motion.div variants={fadeInUp} initial="hidden" animate="visible" custom={1}>
           <Typography
-            variant="h5"
+            variant="h4" // Larger subtitle
             sx={{
-              fontFamily: "'Kaushan Script', cursive",
-              color: '#7b1fa2',
-              mb: 3,
+              fontFamily: primaryFont,
+              fontWeight: 600,
+              color: 'rgba(255, 255, 255, 0.8)', // Off-white
+              mb: 4,
+              textTransform: 'uppercase', // Consistent styling
+              letterSpacing: '1px',
             }}
           >
-            React Frontend Developer based in Fujairah, UAE 🌸
+            {/* *** 6. NEW SENIOR LEVEL TAGLINE *** */}
+            Senior Frontend Architect // React Specialist
           </Typography>
         </motion.div>
 
         <motion.div variants={fadeInUp} initial="hidden" animate="visible" custom={2}>
           <Typography
             variant="body1"
-            color="text.secondary"
             sx={{
-              maxWidth: 550,
-              mx: 'auto',
-              fontSize: '1.05rem',
-              mb: 4,
-              lineHeight: 1.7,
+              maxWidth: 650, // Wider for left alignment
+              fontFamily: primaryFont, // Clean sans-serif
+              color: 'rgba(255, 255, 255, 0.6)', // Muted text for focus
+              fontSize: '1.15rem',
+              mb: 5,
+              lineHeight: 1.8,
             }}
           >
-            I specialize in creating clean, responsive, and engaging web interfaces using
-            <strong> React</strong> and <strong>Material UI</strong>. With 4 years of
-            experience in building interactive user experiences, I aim to bridge design
-            and functionality with creativity and precision.
+            {/* *** 7. UPDATED PROFESSIONAL SUMMARY Focusing on Engineering Depth *** */}
+            Architecting performant, accessible, and scalable React applications for Enterprise-level challenges. I specialize in leveraging Material-UI (MUI) and TypeScript to engineer precise design systems and optimized user interfaces. With 4+ years of focused experience, I excel in bridging design and functionality with technical precision and strategic thinking.
           </Typography>
         </motion.div>
 
@@ -148,21 +135,22 @@ const Home = () => {
             endIcon={<ArrowForward />}
             size="large"
             sx={{
-              borderRadius: '25px',
-              px: 4,
-              py: 1.5,
-              fontWeight: 'bold',
-              background:
-                'linear-gradient(90deg, #42a5f5 0%, #7e57c2 100%)',
-              boxShadow: '0 6px 20px rgba(66,165,245,0.3)',
+              // *** 8. HIGH-END BUTTON STYLING ***
+              borderRadius: '30px',
+              px: 6,
+              py: 2,
+              fontWeight: 700,
+              fontSize: '1rem',
+              // Use primary teal CTA color
+              background: primaryTeal,
+              boxShadow: `0 8px 30px rgba(0, 206, 201, 0.3)`,
               '&:hover': {
-                background:
-                  'linear-gradient(90deg, #5c6bc0 0%, #ab47bc 100%)',
+                background: '#01A3A3', // Darker teal hover
               },
             }}
-            onClick={() => navigate('/resume')} // <-- navigate on click
+            onClick={() => navigate('/projects')} // Changed target to 'projects' for immediate focus
           >
-            Explore My Portfolio
+            View Technical Showcase
           </Button>
         </motion.div>
       </motion.div>

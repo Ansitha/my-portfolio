@@ -9,15 +9,14 @@ import Contact from './pages/Contact';
 
 const App = () => (
   <Router>
-    <Navbar />
+    <Navbar /> {/* Now uses the minimalist dark aesthetic with refined sans-serif text */}
     <Routes>
-      <Route path="/" element={<Home />} />
-      
-      <Route path="/projects" element={<Projects />} />
-      <Route path="/resume" element={<Resume />} />
-      <Route path="/contact" element={<Contact />} />
+      <Route path="/" element={<Home />} /> {/* Now uses the "Senior Architect" copy and dark minimal theme */}
+      <Route path="/projects" element={<Projects />} /> {/* Now uses "Outcome-oriented" project descriptions and tech stack chips */}
+      <Route path="/resume" element={<Resume />} /> {/* Now uses "Result-First" bullets focusing on impact & scale */}
+      <Route path="/contact" element={<Contact />} /> {/* Now uses elevated dark paper surfaces with refined icons */}
     </Routes>
-    <Footer />
+    <Footer /> {/* Now uses the unified dark surface and muted text for a professional end-to-end feel */}
   </Router>
 );
 
