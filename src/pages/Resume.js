@@ -1,270 +1,392 @@
-import React from 'react';
+import React from "react";
 import {
-  Container,
-  Typography,
+  Avatar,
   Box,
+  Card,
+  CardContent,
+  Chip,
+  Container,
   Divider,
+  Grid,
   List,
   ListItem,
   ListItemText,
   Paper,
   Stack,
-  Chip // *** NEW COMPONENT FOR SKILLS CHIPS ***
-} from '@mui/material';
+  Typography,
+} from "@mui/material";
+
 import {
   Email,
   Phone,
   LocationOn,
-  Work,
   School,
-  Star,
-  Code,
-  ArrowRight
-} from '@mui/icons-material';
-import { motion } from 'framer-motion';
+  ArrowRight,
+  LinkedIn,
+  CheckCircle,
+} from "@mui/icons-material";
 
-// *** NEW REFINED FONTS & COLORS ***
-const primaryFont = "'Inter', sans-serif"; // Make sure to load this in your index.html
-const primaryTeal = '#00CEC9'; // Vibrant teal for highlights
-const darkBackground = '#121212'; // Deep, modern grey
-const surfaceBackground = '#1E1E1E'; // Slightly lighter dark surface
+import { motion } from "framer-motion";
 
-// Page animation variants (Retained your animation logic)
-const pageOpen = {
-  hidden: { scale: 0.8, rotateY: 90, opacity: 0 },
-  visible: {
-    scale: 1,
-    rotateY: 0,
-    opacity: 1,
-    transition: { duration: 1.2, ease: 'easeOut' },
-  },
-};
+const primaryTeal = "#00CEC9";
 
+// Animation
 const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i = 1) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.25, duration: 0.8 },
+    transition: { delay: i * 0.15, duration: 0.7 },
   }),
 };
 
-// *** SKILLS CHIP DATA - CATEGORIZED ***
-const skillsData = [
-  { category: 'Core Stack', skills: ['React 18', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3'] },
-  { category: 'State & Data', skills: ['Redux Toolkit', 'Zustand', 'TanStack Query', 'Context API'] },
-  { category: 'UI & Design Systems', skills: ['Material UI (MUI)', 'Styled Components', 'Atomic Design'] },
-  { category: 'Architecture & Optimization', skills: ['Performance Auditing', 'Code Splitting', 'Accessibility (a11y)', 'Atomic Design'] },
-  { category: 'Tooling & Backend', skills: ['Git', 'Vite', 'Webpack', 'Node.js (basic)', 'Express (basic)'] },
+const skills = [
+  "React.js",
+  "Next.js",
+  "JavaScript ES6+",
+  "Material UI",
+  "Redux Toolkit",
+  "HTML5",
+  "CSS3",
+  "REST APIs",
+  "Node.js",
+  "Express.js",
+  "Git",
+  "GitHub",
+  "Vite",
+  "Webpack",
 ];
 
-const Resume = () => (
-  <Box
-    sx={{
-      minHeight: '100vh',
-      // *** 1. CHANGE BACKGROUND to MINIMAL DARK ***
-      background: darkBackground,
-      position: 'relative',
-      overflow: 'hidden',
-    }}
-  >
-    {/* Retained your sparkles (optional) */}
-    <motion.div
-      initial={{ opacity: 0 }} animate={{ opacity: [0.3, 1, 0.3] }}
-      transition={{ duration: 6, repeat: Infinity, repeatType: 'mirror' }}
-      style={{ position: 'absolute', top: '20%', left: '30%', width: '6px', height: '6px', borderRadius: '50%', background: 'white', filter: 'blur(2px)' }}
-    />
-    <motion.div
-      initial={{ opacity: 0 }} animate={{ opacity: [0.5, 1, 0.5] }}
-      transition={{ duration: 5, repeat: Infinity, repeatType: 'mirror' }}
-      style={{ position: 'absolute', top: '60%', right: '25%', width: '8px', height: '8px', borderRadius: '50%', background: 'white', filter: 'blur(3px)' }}
-    />
+const languages = [
+  { name: "English", level: "Advanced" },
+  { name: "Malayalam", level: "Native" },
+  { name: "Hindi", level: "Intermediate" },
+  { name: "Arabic", level: "Beginner" },
+];
 
-    {/* Book-like Resume Container */}
-    <Container maxWidth="md" sx={{ pt: 10, pb: 10, perspective: 1500 }}>
-      <motion.div variants={pageOpen} initial="hidden" animate="visible">
-        <Paper
-          elevation={16} // Increased elevation for a floating effect
-          sx={{
-            p: 6, // More padding for senior layout
-            borderRadius: 6, // More rounded modern corners
-            // *** 2. CHANGE CONTAINER BACKGROUND for a high-end look ***
-            background: surfaceBackground, // Slightly lighter dark surface
-            boxShadow: '0 25px 60px rgba(0,0,0,0.5)',
-            transformStyle: 'preserve-3d',
-            position: 'relative',
-            overflow: 'hidden',
-            border: `1px solid rgba(255, 255, 255, 0.03)`, // Ultra subtle border highlight
-          }}
-        >
-          {/* Replaced page texture with a modern radial gradient highlight */}
-          <Box
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              backgroundImage:
-                `radial-gradient(circle at 5% 5%, rgba(0, 206, 201, 0.05), transparent 60%)`, // Ultra-subtle teal highlight
-              zIndex: 0,
-            }}
-          />
+const certificates = [
+  "JavaScript Algorithms & Data Structures — freeCodeCamp",
+  "Java Programming Training — Evosoft Technologies Pvt Ltd",
+];
 
-          <Box sx={{ position: 'relative', zIndex: 1, textAlign: 'left' }}>
-            {/* Header */}
-            <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0}>
-              <Typography
-                variant="h2"
+const experiencePoints = [
+  "Developed responsive UI components using React.js, JavaScript ES6+, and modern CSS frameworks.",
+  "Built reusable component libraries to support scalable multi-module applications.",
+  "Integrated REST APIs with proper state handling, loaders, error boundaries, and caching.",
+  "Implemented authentication flows including OTP login, Google SSO, protected routes, and session handling.",
+  "Created dashboards with tables, filters, charts, and API-driven components.",
+  "Developed admin panels with CRUD operations, role-based access, and reusable form components.",
+  "Improved UI performance using memoization, code splitting, and rendering optimization.",
+  "Collaborated with backend, QA, and design teams in an agile environment.",
+  "Participated in code reviews to ensure code quality and consistency.",
+  "Contributed to technical documentation and internal UI guidelines.",
+];
+
+const Resume = () => {
+  return (
+    <Box
+      sx={{
+        minHeight: "100vh",
+        background: "linear-gradient(135deg,#0a0a0a 0%,#111827 100%)",
+        py: 8,
+        px: { xs: 2, md: 4 },
+      }}
+    >
+      <Container maxWidth="xl">
+        <Grid container spacing={4}>
+          {/* SIDEBAR */}
+          <Grid item xs={12} md={4}>
+            <motion.div initial={{ opacity: 0, x: -40 }} animate={{ opacity: 1, x: 0 }}>
+              <Paper
                 sx={{
-                  // *** 3. REFINED FONT ***
-                  fontFamily: primaryFont,
-                  fontWeight: 800,
-                  color: 'white',
-                  textTransform: 'uppercase',
-                  letterSpacing: '2px',
-                  mb: 1.5,
+                  p: 4,
+                  borderRadius: 4,
+                  background: "rgba(255,255,255,0.05)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                  color: "#fff",
                 }}
               >
-                Ansithamol A.
-              </Typography>
-              <Typography
-                variant="h5"
-                color="text.secondary"
-                sx={{
-                  fontFamily: primaryFont,
-                  fontWeight: 600,
-                  color: 'rgba(255, 255, 255, 0.7)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '1px',
-                }}
-              >
-                {/* *** 4. NEW SENIOR LEVEL TAGLINE *** */}
-                Senior Frontend Architect // Fujairah, UAE
-              </Typography>
-            </motion.div>
+                {/* Avatar */}
+                <Avatar
+                  sx={{
+                    width: 120,
+                    height: 120,
+                    mx: "auto",
+                    mb: 2,
+                    bgcolor: primaryTeal,
+                    fontSize: 42,
+                    fontWeight: 700,
+                  }}
+                >
+                  AA
+                </Avatar>
 
-            <Divider sx={{ my: 5, borderColor: 'rgba(255, 255, 255, 0.05)' }} />
-
-            {/* Sections */}
-            <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={1}>
-              <Typography variant="h5" sx={{ fontFamily: primaryFont, fontWeight: 700, display: "flex", alignItems: "center", gutterBottom: 1.5, color: 'white' }}>
-                <Work sx={{ mr: 1.5, color: primaryTeal, fontSize: "2rem" }} />
-                Technical Summary
-              </Typography>
-              <Typography variant="body1" sx={{ fontFamily: primaryFont, color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.8, fontSize: "1.05rem" }}>
-                {/* *** 5. NEW PROFESSIONAL SUMMARY FOCUSING ON IMPACT & SCALE *** */}
-                Highly specialized Senior Frontend Architect with 4+ years of proven success in engineering performant, accessible, and scalable React applications for Enterprise-level challenges. Expert in Material-UI (MUI), TypeScript, and modern state management. Proven capability in bridging design and functionality with technical precision, driving development velocity, and strategic decision-making.
-              </Typography>
-            </motion.div>
-
-            <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2}>
-              <Box mt={5}>
-                <Typography variant="h5" sx={{ fontFamily: primaryFont, fontWeight: 700, display: "flex", alignItems: "center", gutterBottom: 2, color: 'white' }}>
-                  <Code sx={{ mr: 1.5, color: primaryTeal, fontSize: "2rem" }} />
-                  Expertise & Skills
+                {/* Name */}
+                <Typography variant="h4" textAlign="center" fontWeight={700}>
+                  Ansithamol A.
                 </Typography>
-                {/* *** 6. NEW CATEGORIZED SKILLS LAYOUT WITH CHIPS *** */}
-                {skillsData.map((categoryData, i) => (
-                  <Box key={i} mb={2.5}>
-                    <Typography variant="subtitle1" sx={{ fontFamily: primaryFont, fontWeight: 600, color: 'rgba(255, 255, 255, 0.8)', mb: 1, textTransform: 'uppercase', letterSpacing: '0.5px' }}>
-                      {categoryData.category}
+
+                <Typography textAlign="center" color="grey.400" mb={4}>
+                  React & Front-End Developer
+                </Typography>
+
+                {/* CONTACT */}
+                <Card
+                  sx={{
+                    bgcolor: "rgba(255,255,255,0.04)",
+                    borderRadius: 3,
+                    mb: 3,
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6" mb={2} color={primaryTeal}>
+                      Contact
                     </Typography>
+
+                    <Stack spacing={2}>
+                      <Box display="flex" gap={1}>
+                        <Email />
+                        <Typography variant="body2">ansithamol@gmail.com</Typography>
+                      </Box>
+
+                      <Box display="flex" gap={1}>
+                        <Phone />
+                        <Typography variant="body2">052 286 0807</Typography>
+                      </Box>
+
+                      <Box display="flex" gap={1}>
+                        <LocationOn />
+                        <Typography variant="body2">United Arab Emirates</Typography>
+                      </Box>
+
+                      <Box display="flex" gap={1}>
+                        <LinkedIn />
+                        <Typography variant="body2">
+                          linkedin.com/in/ansithamol-a-5b5864130
+                        </Typography>
+                      </Box>
+                    </Stack>
+                  </CardContent>
+                </Card>
+
+                {/* STATUS */}
+                <Card
+                  sx={{
+                    bgcolor: "rgba(255,255,255,0.04)",
+                    borderRadius: 3,
+                    mb: 3,
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6" mb={2} color={primaryTeal}>
+                      Availability
+                    </Typography>
+
+                    <Stack spacing={1}>
+                      <Box display="flex" alignItems="center" gap={1}>
+                        <CheckCircle sx={{ color: primaryTeal }} />
+                        <Typography>Resident Visa</Typography>
+                      </Box>
+
+                      <Box display="flex" alignItems="center" gap={1}>
+                        <CheckCircle sx={{ color: primaryTeal }} />
+                        <Typography>Immediate Joiner</Typography>
+                      </Box>
+                    </Stack>
+                  </CardContent>
+                </Card>
+
+                {/* SKILLS */}
+                <Card
+                  sx={{
+                    bgcolor: "rgba(255,255,255,0.04)",
+                    borderRadius: 3,
+                    mb: 3,
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6" mb={2} color={primaryTeal}>
+                      Skills
+                    </Typography>
+
                     <Stack direction="row" flexWrap="wrap" gap={1}>
-                      {categoryData.skills.map((skill, j) => (
+                      {skills.map((skill) => (
                         <Chip
-                          key={j}
+                          key={skill}
                           label={skill}
-                          size="small"
                           sx={{
-                            background: 'rgba(30, 30, 30, 0.8)',
-                            color: primaryTeal,
-                            fontFamily: primaryFont,
-                            fontWeight: 500,
-                            borderRadius: '16px',
-                            border: `1px solid transparent`,
-                            '&:hover': {
-                              borderColor: primaryTeal,
-                              background: 'rgba(0, 206, 201, 0.05)',
-                            },
+                            bgcolor: "#1e293b",
+                            color: "#fff",
+                            borderRadius: "6px",
                           }}
                         />
                       ))}
                     </Stack>
-                  </Box>
-                ))}
-              </Box>
-            </motion.div>
+                  </CardContent>
+                </Card>
 
-            <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={3}>
-              <Box mt={5}>
-                <Typography variant="h5" sx={{ fontFamily: primaryFont, fontWeight: 700, display: "flex", alignItems: "center", gutterBottom: 2, color: 'white' }}>
-                  <Work sx={{ mr: 1.5, color: primaryTeal, fontSize: "2rem" }} />
-                  Experience
+                {/* LANGUAGES */}
+                <Card
+                  sx={{
+                    bgcolor: "rgba(255,255,255,0.04)",
+                    borderRadius: 3,
+                    border: "1px solid rgba(255,255,255,0.08)",
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6" mb={2} color={primaryTeal}>
+                      Languages
+                    </Typography>
+
+                    <Stack spacing={1}>
+                      {languages.map((lang) => (
+                        <Box key={lang.name} display="flex" justifyContent="space-between">
+                          <Typography>{lang.name}</Typography>
+                          <Typography color="grey.400">{lang.level}</Typography>
+                        </Box>
+                      ))}
+                    </Stack>
+                  </CardContent>
+                </Card>
+              </Paper>
+            </motion.div>
+          </Grid>
+
+          {/* MAIN CONTENT */}
+          <Grid item xs={12} md={8}>
+            <motion.div initial={{ opacity: 0, x: 40 }} animate={{ opacity: 1, x: 0 }}>
+              <Paper
+                sx={{
+                  p: 4,
+                  borderRadius: 4,
+                  background: "rgba(255,255,255,0.05)",
+                  backdropFilter: "blur(12px)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
+                  color: "#fff",
+                }}
+              >
+                {/* ABOUT MY WORK */}
+                <Typography variant="h4" mb={3} fontWeight={700}>
+                  About My Work
                 </Typography>
-                <Typography variant="h6" sx={{ fontFamily: primaryFont, fontWeight: 600, color: 'rgba(255, 255, 255, 0.9)' }}>
-                  Senior React Developer – Zeazonz Technologies Pvt Ltd
+
+                <Typography color="grey.400" lineHeight={1.9}>
+                  A detail-oriented React Front-End Developer with 5+ years of experience building
+                  responsive, scalable, and user-friendly web applications. Strong expertise in
+                  React.js, JavaScript ES6+, UI state management, REST API integration,
+                  authentication flows, dashboards, and admin panels. Currently expanding into
+                  full-stack JavaScript (Node.js) and AI-powered web development.
                 </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ color: 'rgba(255, 255, 255, 0.5)', mb: 2 }}>
-                  Feb 2021 – Present | Ernakulam, Kerala, India
+
+                <Divider sx={{ my: 4 }} />
+
+                {/* EXPERIENCE */}
+                <Typography variant="h4" mb={3} fontWeight={700}>
+                  Engineering Experience
                 </Typography>
-                {/* *** 7. NEW EXPERIENCE BULLETS FOCUSING ON OUTCOMES & ACCOMPLISHMENTS *** */}
-                <List dense sx={{ pl: 1 }}>
-                  {[
-                    "Architected and implemented a reusable MUI-based component library, reducing feature development time by 30% across multiple teams.",
-                    "Led the frontend development of a critical enterprise analytics dashboard, optimizing render performance for large datasets using virtualization.",
-                    "Collaborated in an agile environment to deliver seamless front-end experiences, focusing on performance, accessibility (a11y), and code quality.",
-                    "Participated in technology stack decisions and mentoring junior developers in React and best practices."
-                  ].map((bullet, k) => (
-                    <ListItem key={k} disableGutters sx={{ alignItems: 'flex-start', mb: 0.5 }}>
-                      <ArrowRight sx={{ mr: 1, color: primaryTeal, mt: 0.5 }} />
-                      <ListItemText
-                        primary={bullet}
-                        primaryTypographyProps={{ sx: { color: 'rgba(255, 255, 255, 0.7)', fontFamily: primaryFont, lineHeight: 1.7 } }}
-                      />
+
+                {/* CUSTOM TIMELINE */}
+                <Box sx={{ position: "relative", pl: 3 }}>
+                  <Box
+                    sx={{
+                      position: "absolute",
+                      left:12,
+                      top: 0,
+                      bottom: 0,
+                      width: "2px",
+                      bgcolor: primaryTeal,
+                      opacity: 0.4,
+                    }}
+                  />
+
+                  <Box sx={{ position: "relative", mb: 4 }}>
+                    <Box
+                      sx={{
+                        position: "absolute",
+                        left: -2,
+                        top: 4,
+                        width: 14,
+                        height: 14,
+                        bgcolor: primaryTeal,
+                        borderRadius: "50%",
+                      }}
+                    />
+
+                    <Typography sx={{mx:4}} variant="h6">React Front-End Developer</Typography>
+                    <Typography color="grey.500">Zeazonz Technologies Pvt Ltd</Typography>
+
+                    <Typography variant="body2" color="grey.500" mb={2}>
+                      02/2021 – Present (Remote)
+                    </Typography>
+
+                    <List dense>
+                      {experiencePoints.map((item) => (
+                        <ListItem key={item}>
+                          <ArrowRight sx={{ color: primaryTeal, mr: 1 }} />
+                          <ListItemText primary={item} />
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Box>
+                </Box>
+
+                <Divider sx={{ my: 4 }} />
+
+                {/* EDUCATION */}
+                <Typography variant="h4" mb={3} fontWeight={700}>
+                  Academic Background
+                </Typography>
+
+                <Box
+                  sx={{
+                    p: 3,
+                    borderRadius: 3,
+                    bgcolor: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    mb: 4,
+                  }}
+                >
+                  <Box display="flex" alignItems="center" gap={2}>
+                    <School sx={{ color: primaryTeal }} />
+
+                    <Box>
+                      <Typography variant="h6">
+                        B.Tech in Electronics & Communication Engineering
+                      </Typography>
+
+                      <Typography color="grey.400">
+                        College of Engineering, Cherthala (2015–2019)
+                      </Typography>
+                    </Box>
+                  </Box>
+                </Box>
+
+                {/* CERTIFICATES */}
+                <Typography variant="h4" mb={3} fontWeight={700}>
+                  Certificates
+                </Typography>
+
+                <List dense>
+                  {certificates.map((cert) => (
+                    <ListItem key={cert}>
+                      <ArrowRight sx={{ color: primaryTeal, mr: 1 }} />
+                      <ListItemText primary={cert} />
                     </ListItem>
                   ))}
                 </List>
-              </Box>
+              </Paper>
             </motion.div>
-
-            <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={4}>
-              <Box mt={5}>
-                <Typography variant="h5" sx={{ fontFamily: primaryFont, fontWeight: 700, display: "flex", alignItems: "center", gutterBottom: 1.5, color: 'white' }}>
-                  <School sx={{ mr: 1.5, color: primaryTeal, fontSize: "2rem" }} />
-                  Education
-                </Typography>
-                <Typography variant="body1" sx={{ fontFamily: primaryFont, color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.7 }}>
-                  B.Tech in Electronics and Communication Engineering – College of Engineering, Cherthala (2019)
-                </Typography>
-              </Box>
-            </motion.div>
-
-            <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={5}>
-              <Divider sx={{ my: 5, borderColor: 'rgba(255, 255, 255, 0.05)' }} />
-              <Stack
-                direction={{ xs: 'column', sm: 'row' }}
-                spacing={3}
-                justifyContent="center"
-                alignItems="center"
-                sx={{ background: 'rgba(30, 30, 30, 0.5)', p: 3, borderRadius: '16px', border: `1px solid rgba(255, 255, 255, 0.03)` }}
-              >
-                <Box display="flex" alignItems="center">
-                  <Email fontSize="small" sx={{ mr: 1.2, color: primaryTeal }} />
-                  <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontFamily: primaryFont }}>ansithamol@gmail.com</Typography>
-                </Box>
-                <Box display="flex" alignItems="center">
-                  <Phone fontSize="small" sx={{ mr: 1.2, color: primaryTeal }} />
-                  <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontFamily: primaryFont }}>+971-52 286 0807</Typography>
-                </Box>
-                <Box display="flex" alignItems="center">
-                  <LocationOn fontSize="small" sx={{ mr: 1.2, color: primaryTeal }} />
-                  <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)', fontFamily: primaryFont }}>Fujairah, UAE</Typography>
-                </Box>
-              </Stack>
-            </motion.div>
-          </Box>
-        </Paper>
-      </motion.div>
-    </Container>
-  </Box>
-);
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
+  );
+};
 
 export default Resume;

@@ -10,29 +10,110 @@ const darkBackground = '#121212'; // Deep, modern grey background
 const surfaceBackground = '#1E1E1E'; // Slightly lighter dark surface
 
 // *** OPTIMIZED PROJECT DATA (Outcome-oriented, Tech-focused) ***
+
 const projects = [
   {
-    title: 'OnCall Incident Management System',
-    // *** NEW SENIOR LEVEL COPY: Focusing on technical outcomes and scale ***
-    contribution: 'Frontend Architect', 
-    problemSolved: 'Engineered a highly responsive dashboard to visualize incident severity and status. Implemented virtualization to handle 1,000+ data points simultaneously, achieving a 60fps interaction rate.',
-    // *** NEW REQUIREMENT: TECH STACK FOR THE PROJECT ***
-    stack: ['React 18', 'Material-UI (MUI)', 'TanStack Query', 'TypeScript', 'Vite', 'a11y'],
-    github: 'https://github.com/yourusername/oncall-ims',
+    title: 'Modern Blog Platform',
+    contribution: 'Full Stack Developer',
+    problemSolved:
+      'Built a responsive blogging platform where users can create, edit, delete, and manage articles. Implemented authentication, category filtering, search functionality, and a clean reading experience optimized for desktop and mobile devices.',
+
+    stack: [
+      'React.js',
+      'Material UI',
+      'Node.js',
+      // 'Express.js',
+      // 'MongoDB',
+      'JWT Authentication',
+    ],
+
+    github: 'https://github.com/yourusername/blog-platform',
   },
+
   {
-    title: 'MCQ Exam System',
-    contribution: 'Lead UI Developer',
-    problemSolved: 'Developed a robust UI to handle dynamic MCQ logic and real-time scoring calculations. Implemented custom MUI components for timed quizzes and instant feedback, ensuring high usability under stress conditions.',
-    stack: ['React', 'Redux Toolkit', 'Axios', 'Material-UI', 'Jest (Testing)'],
-    github: 'https://github.com/yourusername/mcq-exam-system',
+    title: 'Personal Fitness Tracker',
+    contribution: 'Frontend Developer',
+    problemSolved:
+      'Developed a fitness tracking application that allows users to log workouts, monitor progress, track calories burned, and visualize weekly performance through interactive charts and analytics.',
+
+    stack: [
+      'React.js',
+      'Material UI',
+      'Chart.js',
+      'React Hooks',
+      'Local Storage',
+    ],
+
+    github: 'https://github.com/yourusername/fitness-tracker',
   },
+
   {
-    title: 'E-commerce Online Grocery Store',
-    contribution: 'Fullstack Contributor (Frontend Focus)',
-    problemSolved: 'Led the UI overhaul, implementing dynamic product filtering and a streamlined checkout flow. Reusable MUI components reduced development time for the cart functionality by 25%.',
-    stack: ['React', 'Context API', 'Axios', 'MUI v5', 'User Authentication'],
-    github: 'https://github.com/yourusername/online-grocery-store',
+    title: 'Task Management Board',
+    contribution: 'React Developer',
+    problemSolved:
+      'Created a Kanban-style task management system with drag-and-drop functionality, priority levels, due dates, and progress tracking. Designed reusable components and responsive layouts for productivity workflows.',
+
+    stack: [
+      'React.js',
+      'Material UI',
+      'Redux Toolkit',
+      // 'React DnD',
+      'JavaScript',
+    ],
+
+    github: 'https://github.com/yourusername/task-board',
+  },
+
+  {
+    title: 'Authentication Dashboard',
+    contribution: 'Frontend Developer',
+    problemSolved:
+      'Implemented a secure dashboard application featuring login, registration, protected routes, profile management, and role-based navigation. Focused on clean UI design and authentication workflows.',
+
+    stack: [
+      'React.js',
+      'Material UI',
+      'React Router',
+      'JWT',
+      'Axios',
+    ],
+
+    github: 'https://github.com/yourusername/auth-dashboard',
+  },
+
+  {
+    title: 'E-Commerce Store',
+    contribution: 'Frontend Developer',
+    problemSolved:
+      'Built a modern online shopping experience featuring product listings, category filtering, shopping cart functionality, wishlist management, and a responsive checkout flow.',
+
+    stack: [
+      'Next.js',
+      'Tailwind CSS',
+      'Context API',
+      // 'Stripe',
+      'Responsive Design',
+    ],
+
+    github: 'https://github.com/yourusername/ecommerce-store',
+  },
+
+  {
+    title: 'Job Application Tracker',
+    contribution: 'Full Stack Developer',
+    problemSolved:
+      'Designed an application for managing job applications, interview schedules, and application statuses. Included dashboard analytics, filtering, search, and CRUD operations for efficient job tracking.',
+
+    stack: [
+      'React.js',
+      'Node.js',
+      'Express.js',
+      'MongoDB',
+      'Material UI',
+      'REST APIs',
+    ],
+
+    github: 'https://github.com/yourusername/job-tracker',
   },
 ];
 
@@ -88,7 +169,7 @@ const ProjectsPage = () => {
             letterSpacing: '2px', // Modern spacing
           }}
         >
-          TECHNICAL SHOWCASE // Case Studies
+          Featured Work
         </Typography>
 
         <Stack spacing={4} width="100%"> 
@@ -129,7 +210,7 @@ const ProjectsPage = () => {
                         {project.title}
                       </Typography>
                       {/* *** NEW ROLE CHIP *** */}
-                      <Chip 
+                      {/* <Chip 
                         label={project.contribution}
                         size="small"
                         sx={{
@@ -141,7 +222,7 @@ const ProjectsPage = () => {
                           fontFamily: primaryFont,
                           textTransform: 'uppercase',
                         }}
-                      />
+                      /> */}
 
                       <Typography 
                         variant="body1" 
@@ -193,7 +274,7 @@ const ProjectsPage = () => {
                 
                 {/* Re-enabled and restyled GitHub button */}
                 <CardActions sx={{ justifyContent: 'left', px: 5, pb: 4, pt: 0 }}>
-                  <Button
+                  <Button disabled
                     href={project.github}
                     target="_blank"
                     variant="outlined"
