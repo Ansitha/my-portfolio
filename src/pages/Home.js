@@ -10,13 +10,15 @@ import {
 import { motion } from 'framer-motion';
 import {
   ArrowForward,
+  Description,
   Download,
   LocationOn,
 } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import { useTheme } from "@mui/material/styles";
 
 const primaryFont = "'Inter', sans-serif";
-const primaryTeal = '#00E5D1';
+
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -60,20 +62,26 @@ const stats = [
 const Home = () => {
   const navigate = useNavigate();
   const isMobile = useMediaQuery('(max-width:768px)');
+  const theme = useTheme();
+  const isDark = theme.palette.mode === "dark";
+
+  const primaryTeal = theme.palette.primary.main;
 
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        background:
-          'linear-gradient(135deg, #0A0A0A 0%, #111827 100%)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
+        minHeight: "100vh",
+        background: isDark
+          ? "linear-gradient(135deg, #0A0A0A 0%, #111827 100%)"
+          : "linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 100%)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
         px: { xs: 3, sm: 4 },
         py: { xs: 6, md: 10 },
-        position: 'relative',
-        overflow: 'hidden',
+        position: "relative",
+        overflow: "hidden",
+        width: '100%'
       }}
     >
       {/* Glow Effects */}
@@ -81,13 +89,13 @@ const Home = () => {
       <Box
         sx={{
           position: 'absolute',
-          width: 350,
-          height: 350,
-          background: primaryTeal,
-          filter: 'blur(200px)',
+          width: { xs: 180, md: 350 },
+          height: { xs: 180, md: 350 },
+          background: theme.palette.secondary.main,
+          filter: { xs: 'blur(100px)', md: 'blur(200px)' },
           opacity: 0.15,
-          top: '-10%',
-          left: '-10%',
+          bottom: '-10%',
+          right: '-10%',
           borderRadius: '50%',
         }}
       />
@@ -97,7 +105,7 @@ const Home = () => {
           position: 'absolute',
           width: 350,
           height: 350,
-          background: '#2563EB',
+          background: theme.palette.secondary.main,
           filter: 'blur(200px)',
           opacity: 0.15,
           bottom: '-10%',
@@ -117,16 +125,19 @@ const Home = () => {
             maxWidth: 1000,
             mx: 'auto',
             backdropFilter: 'blur(18px)',
-            background: 'rgba(255,255,255,0.04)',
-            border: '1px solid rgba(255,255,255,0.08)',
+            background: theme.palette.background.paper,
+            border: `1px solid ${theme.palette.divider}`,
+            boxShadow:
+              theme.palette.mode === "dark"
+                ? "0 20px 60px rgba(0,0,0,0.4)"
+                : "0 20px 60px rgba(0,0,0,0.08)",
             borderRadius: '28px',
             p: {
-              xs: 4,
-              sm: 6,
+              xs: 2.5,
+              sm: 4,
               md: 8,
-            },
-            boxShadow:
-              '0 20px 60px rgba(0,0,0,0.4)',
+            }
+
           }}
         >
           {/* Availability Badge */}
@@ -143,10 +154,8 @@ const Home = () => {
                 px: 2,
                 py: 1,
                 borderRadius: '999px',
-                background:
-                  'rgba(0,229,209,0.08)',
-                border:
-                  '1px solid rgba(0,229,209,0.2)',
+                background: `${primaryTeal}14`,
+                border: `1px solid ${primaryTeal}40`,
                 mb: 3,
               }}
             >
@@ -174,11 +183,13 @@ const Home = () => {
               sx={{
                 fontFamily: primaryFont,
                 fontWeight: 800,
-                color: '#fff',
+                color: theme.palette.text.primary,
                 fontSize: {
-                  xs: '2.3rem',
+                  xs: '1.8rem',
+                  sm: '2.5rem',
                   md: '4rem',
                 },
+                wordBreak: "break-word",
                 lineHeight: 1.1,
                 mb: 2,
               }}
@@ -200,10 +211,10 @@ const Home = () => {
           >
             <Typography
               sx={{
-                color:
-                  'rgba(255,255,255,0.8)',
+                color: theme.palette.text.secondary,
                 fontSize: {
-                  xs: '1.1rem',
+                  xs: '0.95rem',
+                  sm: '1.1rem',
                   md: '1.6rem',
                 },
                 fontWeight: 600,
@@ -224,10 +235,9 @@ const Home = () => {
           >
             <Typography
               sx={{
-                color:
-                  'rgba(255,255,255,0.65)',
+                color: theme.palette.text.secondary,
                 fontSize: {
-                  xs: '1rem',
+                  xs: '0.95rem',
                   md: '1.15rem',
                 },
                 lineHeight: 1.8,
@@ -262,7 +272,7 @@ const Home = () => {
                 display: 'flex',
                 alignItems: 'center',
                 gap: 1,
-                mb: 4,
+                flexWrap: 'wrap',
               }}
             >
               <LocationOn
@@ -274,8 +284,7 @@ const Home = () => {
 
               <Typography
                 sx={{
-                  color:
-                    'rgba(255,255,255,0.7)',
+                  color: theme.palette.text.secondary,
                 }}
               >
                 United Arab Emirates • Resident Visa • Immediate Joiner
@@ -303,19 +312,24 @@ const Home = () => {
                 <Box
                   key={tech}
                   sx={{
-                    px: 2,
-                    py: 1,
+                    px: { xs: 1.2, md: 2 },
+                    py: 0.8,
                     borderRadius: '20px',
                     background:
-                      'rgba(255,255,255,0.05)',
-                    border:
-                      '1px solid rgba(255,255,255,0.08)',
+                      theme.palette.mode === "dark"
+                        ? "rgba(255,255,255,0.05)"
+                        : "rgba(0,0,0,0.04)",
+
+                    border: `1px solid ${theme.palette.divider}`,
                   }}
                 >
                   <Typography
                     sx={{
                       color: primaryTeal,
-                      fontSize: '0.85rem',
+                      fontSize: {
+                        xs: '0.75rem',
+                        md: '0.85rem',
+                      }
                     }}
                   >
                     {tech}
@@ -350,10 +364,11 @@ const Home = () => {
                   px: 5,
                   py: 1.6,
                   fontWeight: 700,
-                  background: primaryTeal,
-                  color: '#000',
+                  bgcolor: theme.palette.primary.main,
+                  color: theme.palette.primary.contrastText,
+
                   '&:hover': {
-                    background: '#00c8b7',
+                    bgcolor: theme.palette.primary.dark,
                   },
                 }}
               >
@@ -362,7 +377,7 @@ const Home = () => {
 
               <Button
                 variant="outlined"
-                startIcon={<Download />}
+                startIcon={<Description />}
                 onClick={() => navigate('/resume')}
                 sx={{
                   borderRadius: '30px',
@@ -372,9 +387,8 @@ const Home = () => {
                   borderColor: primaryTeal,
                   '&:hover': {
                     borderColor: primaryTeal,
-                    background:
-                      'rgba(0,229,209,0.08)',
-                  },
+                    backgroundColor: `${primaryTeal}14`,
+                  }
                 }}
               >
                 Resume
@@ -395,7 +409,8 @@ const Home = () => {
                 display: 'grid',
                 gridTemplateColumns: {
                   xs: '1fr',
-                  sm: 'repeat(3,1fr)',
+                  sm: 'repeat(2,1fr)',
+                  md: 'repeat(3,1fr)',
                 },
                 gap: 3,
               }}
@@ -407,16 +422,17 @@ const Home = () => {
                     textAlign: 'center',
                     p: 3,
                     borderRadius: '18px',
-                    background:
-                      'rgba(255,255,255,0.03)',
-                    border:
-                      '1px solid rgba(255,255,255,0.05)',
+                    background: theme.palette.background.paper,
+                    border: `1px solid ${theme.palette.divider}`,
                   }}
                 >
                   <Typography
                     sx={{
                       color: primaryTeal,
-                      fontSize: '2rem',
+                      fontSize: {
+                        xs: '1.6rem',
+                        md: '2rem',
+                      },
                       fontWeight: 800,
                     }}
                   >
@@ -425,8 +441,7 @@ const Home = () => {
 
                   <Typography
                     sx={{
-                      color:
-                        'rgba(255,255,255,0.65)',
+                      color: theme.palette.text.secondary,
                     }}
                   >
                     {item.label}

@@ -27,10 +27,8 @@ import {
 } from "@mui/icons-material";
 
 import { motion } from "framer-motion";
+import { useTheme } from "@mui/material/styles";
 
-const primaryTeal = "#00CEC9";
-
-// Animation
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i = 1) => ({
@@ -83,11 +81,19 @@ const experiencePoints = [
 ];
 
 const Resume = () => {
+  const theme = useTheme();
+
+  const bg = theme.palette.background.default;
+  const surface = theme.palette.background.paper;
+  const textPrimary = theme.palette.text.primary;
+  const textSecondary = theme.palette.text.secondary;
+  const accent = theme.palette.primary.main;
+
   return (
     <Box
       sx={{
         minHeight: "100vh",
-        background: "linear-gradient(135deg,#0a0a0a 0%,#111827 100%)",
+        background: bg,
         py: 8,
         px: { xs: 2, md: 4 },
       }}
@@ -101,11 +107,11 @@ const Resume = () => {
                 sx={{
                   p: 4,
                   borderRadius: 4,
-                  background: "rgba(255,255,255,0.05)",
+                  background: surface,
                   backdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
-                  color: "#fff",
+                  border: `1px solid ${textPrimary}20`,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.25)",
+                  color: textPrimary,
                 }}
               >
                 {/* Avatar */}
@@ -115,7 +121,7 @@ const Resume = () => {
                     height: 120,
                     mx: "auto",
                     mb: 2,
-                    bgcolor: primaryTeal,
+                    bgcolor: accent,
                     fontSize: 42,
                     fontWeight: 700,
                   }}
@@ -128,21 +134,21 @@ const Resume = () => {
                   Ansithamol A.
                 </Typography>
 
-                <Typography textAlign="center" color="grey.400" mb={4}>
+                <Typography textAlign="center" color={textSecondary} mb={4}>
                   React & Front-End Developer
                 </Typography>
 
                 {/* CONTACT */}
                 <Card
                   sx={{
-                    bgcolor: "rgba(255,255,255,0.04)",
+                    bgcolor: `${textPrimary}05`,
                     borderRadius: 3,
                     mb: 3,
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    border: `1px solid ${textPrimary}15`,
                   }}
                 >
                   <CardContent>
-                    <Typography variant="h6" mb={2} color={primaryTeal}>
+                    <Typography variant="h6" mb={2} color={accent}>
                       Contact
                     </Typography>
 
@@ -175,25 +181,25 @@ const Resume = () => {
                 {/* STATUS */}
                 <Card
                   sx={{
-                    bgcolor: "rgba(255,255,255,0.04)",
+                    bgcolor: `${textPrimary}05`,
                     borderRadius: 3,
                     mb: 3,
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    border: `1px solid ${textPrimary}15`,
                   }}
                 >
                   <CardContent>
-                    <Typography variant="h6" mb={2} color={primaryTeal}>
+                    <Typography variant="h6" mb={2} color={accent}>
                       Availability
                     </Typography>
 
                     <Stack spacing={1}>
                       <Box display="flex" alignItems="center" gap={1}>
-                        <CheckCircle sx={{ color: primaryTeal }} />
+                        <CheckCircle sx={{ color: accent }} />
                         <Typography>Resident Visa</Typography>
                       </Box>
 
                       <Box display="flex" alignItems="center" gap={1}>
-                        <CheckCircle sx={{ color: primaryTeal }} />
+                        <CheckCircle sx={{ color: accent }} />
                         <Typography>Immediate Joiner</Typography>
                       </Box>
                     </Stack>
@@ -203,14 +209,14 @@ const Resume = () => {
                 {/* SKILLS */}
                 <Card
                   sx={{
-                    bgcolor: "rgba(255,255,255,0.04)",
+                    bgcolor: `${textPrimary}05`,
                     borderRadius: 3,
                     mb: 3,
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    border: `1px solid ${textPrimary}15`,
                   }}
                 >
                   <CardContent>
-                    <Typography variant="h6" mb={2} color={primaryTeal}>
+                    <Typography variant="h6" mb={2} color={accent}>
                       Skills
                     </Typography>
 
@@ -220,8 +226,8 @@ const Resume = () => {
                           key={skill}
                           label={skill}
                           sx={{
-                            bgcolor: "#1e293b",
-                            color: "#fff",
+                            bgcolor: `${accent}22`,
+                            color: textPrimary,
                             borderRadius: "6px",
                           }}
                         />
@@ -233,13 +239,13 @@ const Resume = () => {
                 {/* LANGUAGES */}
                 <Card
                   sx={{
-                    bgcolor: "rgba(255,255,255,0.04)",
+                    bgcolor: `${textPrimary}05`,
                     borderRadius: 3,
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    border: `1px solid ${textPrimary}15`,
                   }}
                 >
                   <CardContent>
-                    <Typography variant="h6" mb={2} color={primaryTeal}>
+                    <Typography variant="h6" mb={2} color={accent}>
                       Languages
                     </Typography>
 
@@ -247,7 +253,7 @@ const Resume = () => {
                       {languages.map((lang) => (
                         <Box key={lang.name} display="flex" justifyContent="space-between">
                           <Typography>{lang.name}</Typography>
-                          <Typography color="grey.400">{lang.level}</Typography>
+                          <Typography color={textSecondary}>{lang.level}</Typography>
                         </Box>
                       ))}
                     </Stack>
@@ -264,11 +270,11 @@ const Resume = () => {
                 sx={{
                   p: 4,
                   borderRadius: 4,
-                  background: "rgba(255,255,255,0.05)",
+                  background: surface,
                   backdropFilter: "blur(12px)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  boxShadow: "0 20px 40px rgba(0,0,0,0.4)",
-                  color: "#fff",
+                  border: `1px solid ${textPrimary}15`,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.25)",
+                  color: textPrimary,
                 }}
               >
                 {/* ABOUT MY WORK */}
@@ -276,7 +282,7 @@ const Resume = () => {
                   About My Work
                 </Typography>
 
-                <Typography color="grey.400" lineHeight={1.9}>
+                <Typography color={textSecondary} lineHeight={1.9}>
                   A detail-oriented React Front-End Developer with 5+ years of experience building
                   responsive, scalable, and user-friendly web applications. Strong expertise in
                   React.js, JavaScript ES6+, UI state management, REST API integration,
@@ -291,16 +297,15 @@ const Resume = () => {
                   Engineering Experience
                 </Typography>
 
-                {/* CUSTOM TIMELINE */}
                 <Box sx={{ position: "relative", pl: 3 }}>
                   <Box
                     sx={{
                       position: "absolute",
-                      left:12,
+                      left: 12,
                       top: 0,
                       bottom: 0,
                       width: "2px",
-                      bgcolor: primaryTeal,
+                      bgcolor: accent,
                       opacity: 0.4,
                     }}
                   />
@@ -313,22 +318,26 @@ const Resume = () => {
                         top: 4,
                         width: 14,
                         height: 14,
-                        bgcolor: primaryTeal,
+                        bgcolor: accent,
                         borderRadius: "50%",
                       }}
                     />
 
-                    <Typography sx={{mx:4}} variant="h6">React Front-End Developer</Typography>
-                    <Typography color="grey.500">Zeazonz Technologies Pvt Ltd</Typography>
+                    <Typography sx={{ mx: 4 }} variant="h6">
+                      React Front-End Developer
+                    </Typography>
+                    <Typography color={textSecondary}>
+                      Zeazonz Technologies Pvt Ltd
+                    </Typography>
 
-                    <Typography variant="body2" color="grey.500" mb={2}>
+                    <Typography variant="body2" color={textSecondary} mb={2}>
                       02/2021 – Present (Remote)
                     </Typography>
 
                     <List dense>
                       {experiencePoints.map((item) => (
                         <ListItem key={item}>
-                          <ArrowRight sx={{ color: primaryTeal, mr: 1 }} />
+                          <ArrowRight sx={{ color: accent, mr: 1 }} />
                           <ListItemText primary={item} />
                         </ListItem>
                       ))}
@@ -347,20 +356,20 @@ const Resume = () => {
                   sx={{
                     p: 3,
                     borderRadius: 3,
-                    bgcolor: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
+                    bgcolor: `${textPrimary}05`,
+                    border: `1px solid ${textPrimary}15`,
                     mb: 4,
                   }}
                 >
                   <Box display="flex" alignItems="center" gap={2}>
-                    <School sx={{ color: primaryTeal }} />
+                    <School sx={{ color: accent }} />
 
                     <Box>
                       <Typography variant="h6">
                         B.Tech in Electronics & Communication Engineering
                       </Typography>
 
-                      <Typography color="grey.400">
+                      <Typography color={textSecondary}>
                         College of Engineering, Cherthala (2015–2019)
                       </Typography>
                     </Box>
@@ -375,7 +384,7 @@ const Resume = () => {
                 <List dense>
                   {certificates.map((cert) => (
                     <ListItem key={cert}>
-                      <ArrowRight sx={{ color: primaryTeal, mr: 1 }} />
+                      <ArrowRight sx={{ color: accent, mr: 1 }} />
                       <ListItemText primary={cert} />
                     </ListItem>
                   ))}
