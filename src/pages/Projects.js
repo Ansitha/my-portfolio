@@ -8,6 +8,24 @@ import { useTheme } from '@mui/material/styles';
 
 const projects = [
   {
+  title: 'Kerala Meal Planner',
+  contribution: 'Full Stack Developer',
+  problemSolved:
+    'Developed an AI-powered meal planning application that generates authentic Kerala recipes with ingredients and cooking steps. Includes Firebase meal storage, dynamic modals, AI generation using Gemini API, and a clean daily planner UI.',
+
+  stack: [
+    'Next.js',
+    'Firebase',
+    'Tailwind CSS',
+    'Gemini AI API',
+    'React Hooks',
+  ],
+
+  github: 'https://github.com/Ansitha/kerala-meal-planner',
+  live: 'https://kerala-meal-planner-esj6woufn-project-1-8368.vercel.app',
+},
+
+  {
     title: 'Modern Blog Platform',
     contribution: 'Full Stack Developer',
     problemSolved:
@@ -326,34 +344,41 @@ const ProjectsPage = () => {
 
                 <CardActions
                   sx={{
-                    justifyContent: {
-                      xs: 'center',
-                      md: 'flex-start',
-                    },
-                    px: {
-                      xs: 2.5,
-                      md: 5,
-                    },
+                    justifyContent: { xs: 'center', md: 'flex-start' },
+                    px: { xs: 2.5, md: 5 },
                     pb: 4,
                     pt: 0,
                   }}
                 >
+                  {project.live && (
+                    <Button
+                      href={project.live}
+                      target="_blank"
+                      variant="contained"
+                      endIcon={<ArrowForward fontSize="small" />}
+                      sx={{
+                        borderRadius: '30px',
+                        px: 4,
+                        mr: 2,
+                        fontWeight: 700,
+                        textTransform: 'none',
+                        background: accent,
+                        '&:hover': { background: `${accent}dd` },
+                      }}
+                    >
+                      Live Demo
+                    </Button>
+                  )}
+
                   <Button
-                    disabled
                     href={project.github}
                     target="_blank"
                     variant="outlined"
                     startIcon={<GitHub />}
                     endIcon={<ArrowForward fontSize="small" />}
-                    fullWidth={false}
                     sx={{
                       borderRadius: '30px',
                       px: 4,
-                      width: {
-                        xs: '100%',
-                        sm: 'auto',
-                      },
-                      py: 1,
                       fontWeight: 700,
                       textTransform: 'none',
                       borderColor: accent,
@@ -367,6 +392,7 @@ const ProjectsPage = () => {
                     View Source on GitHub
                   </Button>
                 </CardActions>
+
               </Card>
             </motion.div>
           ))}
