@@ -8,127 +8,86 @@ import { useTheme } from '@mui/material/styles';
 
 const projects = [
   {
-  title: 'Kerala Meal Planner',
-  contribution: 'Full Stack Developer',
-  problemSolved:
-    'Developed an AI-powered meal planning application that generates authentic Kerala recipes with ingredients and cooking steps. Includes Firebase meal storage, dynamic modals, AI generation using Gemini API, and a clean daily planner UI.',
-
-  stack: [
-    'Next.js',
-    'Firebase',
-    'Tailwind CSS',
-    'Gemini AI API',
-    'React Hooks',
-  ],
-
-  github: 'https://github.com/Ansitha/kerala-meal-planner',
-  live: 'https://kerala-meal-planner-esj6woufn-project-1-8368.vercel.app',
-},
-
-  {
-    title: 'Modern Blog Platform',
+    title: 'Kerala Meal Planner',
     contribution: 'Full Stack Developer',
     problemSolved:
-      'Built a responsive blogging platform where users can create, edit, delete, and manage articles. Implemented authentication, category filtering, search functionality, and a clean reading experience optimized for desktop and mobile devices.',
-
-    stack: [
-      'React.js',
-      'Material UI',
-      'Node.js',
-      // 'Express.js',
-      // 'MongoDB',
-      'JWT Authentication',
-    ],
-
-    github: 'https://github.com/yourusername/blog-platform',
-  },
-
-  {
-    title: 'Personal Fitness Tracker',
-    contribution: 'Frontend Developer',
-    problemSolved:
-      'Developed a fitness tracking application that allows users to log workouts, monitor progress, track calories burned, and visualize weekly performance through interactive charts and analytics.',
-
-    stack: [
-      'React.js',
-      'Material UI',
-      'Chart.js',
-      'React Hooks',
-      'Local Storage',
-    ],
-
-    github: 'https://github.com/yourusername/fitness-tracker',
-  },
-
-  {
-    title: 'Task Management Board',
-    contribution: 'React Developer',
-    problemSolved:
-      'Created a Kanban-style task management system with drag-and-drop functionality, priority levels, due dates, and progress tracking. Designed reusable components and responsive layouts for productivity workflows.',
-
-    stack: [
-      'React.js',
-      'Material UI',
-      'Redux Toolkit',
-      // 'React DnD',
-      'JavaScript',
-    ],
-
-    github: 'https://github.com/yourusername/task-board',
-  },
-
-  {
-    title: 'Authentication Dashboard',
-    contribution: 'Frontend Developer',
-    problemSolved:
-      'Implemented a secure dashboard application featuring login, registration, protected routes, profile management, and role-based navigation. Focused on clean UI design and authentication workflows.',
-
-    stack: [
-      'React.js',
-      'Material UI',
-      'React Router',
-      'JWT',
-      'Axios',
-    ],
-
-    github: 'https://github.com/yourusername/auth-dashboard',
-  },
-
-  {
-    title: 'E-Commerce Store',
-    contribution: 'Frontend Developer',
-    problemSolved:
-      'Built a modern online shopping experience featuring product listings, category filtering, shopping cart functionality, wishlist management, and a responsive checkout flow.',
-
+      'Developed an AI-powered meal planning application that generates authentic Kerala recipes with ingredients and cooking steps. Includes Firebase meal storage, dynamic modals, AI generation using Gemini API, and a clean daily planner UI.',
     stack: [
       'Next.js',
+      'Firebase',
       'Tailwind CSS',
-      'Context API',
-      // 'Stripe',
-      'Responsive Design',
+      'Gemini AI API',
+      'React Hooks',
     ],
-
-    github: 'https://github.com/yourusername/ecommerce-store',
+    github: 'https://github.com/Ansitha/kerala-meal-planner',
+    live: 'https://kerala-meal-planner-esj6woufn-project-1-8368.vercel.app',
   },
 
   {
-    title: 'Job Application Tracker',
+    title: 'Smart Visitor Management System',
     contribution: 'Full Stack Developer',
     problemSolved:
-      'Designed an application for managing job applications, interview schedules, and application statuses. Included dashboard analytics, filtering, search, and CRUD operations for efficient job tracking.',
+      'Built a visitor check-in system for UAE offices featuring QR-based entry, ID/passport OCR scanning, visit logs, and admin dashboards. Designed for real-world corporate and government workflows.',
+    stack: [
+      'Next.js',
+      'Node.js',
+      'MongoDB',
+      'Google Vision OCR',
+      'Material UI',
+    ],
+    github: 'https://github.com/yourusername/visitor-management',
+    live: '',
+  },
 
+  {
+    title: 'E-Commerce Admin Dashboard',
+    contribution: 'Full Stack Developer',
+    problemSolved:
+      'Developed a complete admin dashboard for managing products, orders, inventory, and analytics. Includes charts, role-based access, and responsive UI optimized for UAE retail businesses.',
     stack: [
       'React.js',
-      'Node.js',
       'Express.js',
       'MongoDB',
       'Material UI',
-      'REST APIs',
+      'JWT Auth',
     ],
+    github: 'https://github.com/yourusername/ecommerce-admin-dashboard',
+    live: '',
+  },
 
-    github: 'https://github.com/yourusername/job-tracker',
+  {
+    title: 'AI Resume Builder (UAE Market)',
+    contribution: 'Full Stack Developer',
+    problemSolved:
+      'Created an AI-powered resume builder tailored for UAE hiring standards. Features ATS score checking, auto skill generation, job description analysis, and modern CV templates.',
+    stack: [
+      'Next.js',
+      'OpenAI API',
+      'Tailwind CSS',
+      'Firebase',
+    ],
+    github: 'https://github.com/yourusername/uae-ai-resume-builder',
+    live: '',
+  },
+
+  {
+    title: 'Real Estate Listing Analyzer',
+    contribution: 'Full Stack Developer',
+    problemSolved:
+      'Built a property price analyzer for Dubai and Abu Dhabi using web scraping, ML-based price prediction, and map-based visualization. Helps users compare fair market prices across locations.',
+    stack: [
+      'Python',
+      'Flask',
+      'React.js',
+      'BeautifulSoup',
+      'Google Maps API',
+      'Machine Learning',
+    ],
+    github: 'https://github.com/yourusername/real-estate-analyzer',
+    live: '',
   },
 ];
+
 
 const primaryFont = "'Inter', sans-serif";
 
